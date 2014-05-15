@@ -99,7 +99,7 @@ when 'cinder.volume.drivers.netapp.nfs.NetAppDirect7modeNfsDriver'
     group node['openstack']['block-storage']['group']
     variables(
       host: node['openstack']['block-storage']['netapp']['netapp_server_hostname'],
-      export: node['openstack']['block-storage']['netapp']['export']
+      exports: node['openstack']['block-storage']['nfs']['exports']
     )
     notifies :restart, 'service[cinder-volume]'
   end
