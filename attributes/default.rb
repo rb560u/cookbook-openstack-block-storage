@@ -262,7 +262,7 @@ when 'ubuntu'
   default['openstack']['block-storage']['platform'] = {
     'mysql_python_packages' => ['python-mysqldb'],
     'postgresql_python_packages' => ['python-psycopg2'],
-    'cinder_common_packages' => ['cinder-common'],
+    'cinder_common_packages' => ['cinder-common', 'qemu-utils'],
     'cinder_api_packages' => ['cinder-api', 'python-cinderclient'],
     'cinder_api_service' => 'cinder-api',
     'cinder_client_packages' => ['python-cinderclient'],
