@@ -617,22 +617,24 @@ netapp_storage_service=<%= node["openstack"]["block-storage"]["netapp"]["storage
 #### (StrOpt) Vfiler to use for provisioning
 <% end %>
 
+
+<% if node["openstack"]["block-storage"]["volume"]["driver"] == "cinder.volume.drivers.netapp.nfs.NetAppDirect7modeNfsDriver" || node["openstack"]["block-storage"]["volume"]["driver"] == "cinder.volume.drivers.nfs.NfsDriver" %>
+nfs_mount_point_base=<%= node["openstack"]["block-storage"]["nfs"]["mount_point_base"] %>
+nfs_shares_config=<%= node["openstack"]["block-storage"]["nfs"]["shares_config"] %>
+nfs_disk_util=<%= node["openstack"]["block-storage"]["nfs"]["nfs_disk_util"] %>
+nfs_sparsed_volumes=<%= node["openstack"]["block-storage"]["nfs"]["nfs_sparsed_volumes"] %>
+<% end %>
+
 ######## defined in cinder.volume.netapp_nfs ########
 <% if node["openstack"]["block-storage"]["volume"]["driver"] == "cinder.volume.drivers.netapp.nfs.NetAppDirect7modeNfsDriver" %>
 
-nfs_mount_point_base=<%= node["openstack"]["block-storage"]["nfs"]["mount_point_base"] %>
 <% node["openstack"]["block-storage"]["netapp"]["netapp_server_hostname"].each do |h| %>
 netapp_server_hostname=<%= h %>
 <% end %>
 netapp_server_port=<%= node["openstack"]["block-storage"]["netapp"]["netapp_server_port"] %>
 netapp_login=<%= node["openstack"]["block-storage"]["netapp"]["netapp_server_login"] %>
 netapp_password=<%= node["openstack"]["block-storage"]["netapp"]["netapp_server_password"] %>
-nfs_shares_config=<%= node["openstack"]["block-storage"]["nfs"]["shares_config"] %>
-nfs_disk_util=<%= node["openstack"]["block-storage"]["nfs"]["nfs_disk_util"] %>
-nfs_sparsed_volumes=<%= node["openstack"]["block-storage"]["nfs"]["nfs_sparsed_volumes"] %>
-
 <% end %>
-
 ######## defined in cinder.volume.nexenta.volume ########
 
 # nexenta_host=
