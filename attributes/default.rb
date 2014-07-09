@@ -268,7 +268,7 @@ when 'suse'
     'cinder_nfs_packages' => ['nfs-utils'],
     'cinder_emc_packages' => ['python-pywbem']
   }
-when 'debian'
+when 'ubuntu'
   # operating system user and group names
   default['openstack']['block-storage']['user'] = 'cinder'
   default['openstack']['block-storage']['group'] = 'cinder'
@@ -279,7 +279,7 @@ when 'debian'
     'cinder_api_packages' => ['cinder-api', 'python-cinderclient'],
     'cinder_api_service' => 'cinder-api',
     'cinder_client_packages' => ['python-cinderclient'],
-    'cinder_volume_packages' => ['cinder-volume'],
+    'cinder_volume_packages' => ['cinder-volume', 'qemu-system'],
     'cinder_volume_service' => 'cinder-volume',
     'cinder_scheduler_packages' => ['cinder-scheduler'],
     'cinder_scheduler_service' => 'cinder-scheduler',

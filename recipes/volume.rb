@@ -111,6 +111,36 @@ when 'cinder.volume.drivers.netapp.nfs.NetAppDirect7modeNfsDriver'
     end
   end
 
+
+when 'cinder.volume.drivers.nfs.NfsDriver'
+
+  directory node['openstack']['block-storage']['nfs']['mount_point_base'] do
+    owner node['openstack']['block-storage']['user']
+    group node['openstack']['block-storage']['group']
+    action :create
+  end
+
+
+  platform_options['cinder_nfs_packages'].each do |pkg|
+    package pkg do
+      options platform_options['package_overrides']
+      action :upgrade
+    end
+  end
+
+  template node['openstack']['block-storage']['nfs']['shares_config'] do
+    source 'shares.conf.erb'
+    mode '0600'
+    owner node['openstack']['block-storage']['user']
+    group node['openstack']['block-storage']['group']
+    variables(
+      exports: node['openstack']['block-storage']['nfs']['exports']
+    )
+    notifies :restart, 'service[cinder-volume]'
+  end
+
+
+
 when 'cinder.volume.drivers.ibm.storwize_svc.StorwizeSVCDriver'
   file node['openstack']['block-storage']['san']['san_private_key'] do
     mode '0400'
