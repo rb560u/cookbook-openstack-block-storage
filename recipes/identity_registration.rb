@@ -30,6 +30,7 @@ identity_admin_endpoint = endpoint 'identity-admin'
 bootstrap_token = secret 'secrets', 'openstack_identity_bootstrap_token'
 auth_uri = ::URI.decode identity_admin_endpoint.to_s
 cinder_api_endpoint = endpoint 'block-storage-api'
+cinder_api_endpoint_internal = endpoint 'block-storage-api-internal'
 service_pass = get_password 'service', 'openstack-block-storage'
 region = node['openstack']['block-storage']['region']
 service_tenant_name = node['openstack']['block-storage']['service_tenant_name']
@@ -43,8 +44,8 @@ openstack_identity_register 'Register Cinder Volume Service' do
   service_type 'volume'
   service_description 'Cinder Volume Service'
   endpoint_region region
-  endpoint_adminurl ::URI.decode cinder_api_endpoint.to_s
-  endpoint_internalurl ::URI.decode cinder_api_endpoint.to_s
+  endpoint_adminurl ::URI.decode cinder_api_endpoint_internal.to_s
+  endpoint_internalurl ::URI.decode cinder_api_endpoint_internal.to_s
   endpoint_publicurl ::URI.decode cinder_api_endpoint.to_s
   action :create_service
 end
@@ -56,8 +57,8 @@ openstack_identity_register 'Register Cinder Volume Endpoint' do
   service_type 'volume'
   service_description 'Cinder Volume Service'
   endpoint_region region
-  endpoint_adminurl ::URI.decode cinder_api_endpoint.to_s
-  endpoint_internalurl ::URI.decode cinder_api_endpoint.to_s
+  endpoint_adminurl ::URI.decode cinder_api_endpoint_internal.to_s
+  endpoint_internalurl ::URI.decode cinder_api_endpoint_internal.to_s
   endpoint_publicurl ::URI.decode cinder_api_endpoint.to_s
   action :create_endpoint
 end

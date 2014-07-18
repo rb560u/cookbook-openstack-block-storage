@@ -34,6 +34,8 @@ default['openstack']['block-storage']['custom_template_banner'] = '
 # Do not edit, changes will be overwritten
 '
 
+default['openstack']['endpoints']['block-storage-api-internal']['uri'] = node['openstack']['endpoints']['block-storage-api']['uri']
+
 default['openstack']['block-storage']['verbose'] = 'False'
 default['openstack']['block-storage']['debug'] = 'False'
 
