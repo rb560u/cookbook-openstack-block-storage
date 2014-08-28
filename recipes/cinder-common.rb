@@ -30,6 +30,20 @@ platform_options['cinder_common_packages'].each do |pkg|
   end
 end
 
+
+
+
+if node["openstack"]["block-storage"]["cinder-backup"]["use"]
+
+platform_options['cinder_backup_packages'].each do |pkg|
+  package pkg do
+    options platform_options['package_overrides']
+    action :upgrade
+  end
+end
+
+end
+
 db_user = node['openstack']['db']['block-storage']['username']
 db_pass = get_password 'db', 'cinder'
 sql_connection = db_uri('block-storage', db_user, db_pass)
