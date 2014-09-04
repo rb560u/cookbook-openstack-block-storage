@@ -170,13 +170,11 @@ rootwrap_config=/etc/cinder/rootwrap.conf
 
 auth_strategy=keystone
 
-<% if node["openstack"]["block-storage"]["cinder-backup"]["use"] %>
-##### Attributes for cinder backups
-
-
-<% case node["openstack"]["block-storage"]["backup"]["driver"]
-when 'cinder.backup.drivers.swift' -%>
-
+<% if defined? node["openstack"]["block-storage"]["cinder-backup"]["use"] %>
+  <% if node["openstack"]["block-storage"]["cinder-backup"]["use"] %>
+  ##### Attributes for cinder backups
+    <% case node["openstack"]["block-storage"]["backup"]["driver"]
+    when 'cinder.backup.drivers.swift' -%>
 backup_driver=<%= node["openstack"]["block-storage"]["backup"]["driver"] %>
 backup_swift_url = <%= node["openstack"]["block-storage"]["backup"]["swift_url"] %>
 backup_swift_auth = <%= node["openstack"]["block-storage"]["backup"]["auth"] %>
@@ -185,10 +183,8 @@ backup_swift_auth = <%= node["openstack"]["block-storage"]["backup"]["auth"] %>
 #backup_swift_retry_attempts = 3
 #backup_swift_retry_backoff = 2
 #backup_compression_algorithm = zlib
-
-
-<% end %>
-
+    <% end %>
+  <% end %>
 <% end %>
 
 
