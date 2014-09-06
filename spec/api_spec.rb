@@ -89,7 +89,7 @@ describe 'openstack-block-storage::api' do
     end
 
     it 'runs db migrations' do
-      expect(chef_run).to run_execute('cinder-manage db sync')
+      expect(chef_run).to run_execute('cinder-manage db sync').with(user: 'cinder', group: 'cinder')
     end
 
     expect_creates_policy_json 'service[cinder-api]', 'cinder', 'cinder'
