@@ -267,6 +267,8 @@ when 'ubuntu'
     'cinder_common_packages' => ['cinder-common', 'qemu-utils'],
     'cinder_api_packages' => ['cinder-api', 'python-cinderclient'],
     'cinder_api_service' => 'cinder-api',
+    'cinder_backup_packages' => ['cinder-backup'],
+    'cinder_backup_service' => 'cinder-backup',
     'cinder_client_packages' => ['python-cinderclient'],
     'cinder_volume_packages' => ['cinder-volume', 'qemu-system'],
     'cinder_volume_service' => 'cinder-volume',
