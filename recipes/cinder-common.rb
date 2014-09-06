@@ -63,7 +63,7 @@ if node['openstack']['block-storage']['volume']['driver'] == 'cinder.volume.driv
   solidfire_pass = get_password 'user', node['openstack']['block-storage']['solidfire']['san_login']
 end
 
-glance_api_endpoint = endpoint 'image-api-internal'
+glance_api_endpoint = endpoint 'image-api-admin'
 cinder_api_bind = endpoint 'block-storage-api-bind'
 
 directory '/etc/cinder' do
