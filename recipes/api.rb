@@ -58,9 +58,10 @@ end
 
 identity_endpoint = endpoint 'identity-api'
 identity_admin_endpoint = endpoint 'identity-admin'
+identity_internal_endpoint = endpoint 'identity-api-internal'
 service_pass = get_password 'service', 'openstack-block-storage'
 
-auth_uri = auth_uri_transform(identity_endpoint.to_s, node['openstack']['block-storage']['api']['auth']['version'])
+auth_uri = auth_uri_transform(identity_internal_endpoint.to_s, node['openstack']['block-storage']['api']['auth']['version'])
 
 execute 'cinder-manage db sync' do
   user node['openstack']['block-storage']['user']
@@ -74,7 +75,7 @@ template '/etc/cinder/api-paste.ini' do
   mode 00644
   variables(
     auth_uri: auth_uri,
-    identity_admin_endpoint: identity_admin_endpoint,
+    identity_internal_endpoint: identity_internal_endpoint,
     service_pass: service_pass
     )
 
