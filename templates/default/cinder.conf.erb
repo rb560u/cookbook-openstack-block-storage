@@ -172,7 +172,7 @@ auth_strategy=keystone
 
 <% if defined? node["openstack"]["block-storage"]["cinder-backup"]["use"] %>
   <% if node["openstack"]["block-storage"]["cinder-backup"]["use"] %>
-  ##### Attributes for cinder backups
+##### Attributes for cinder backups
     <% case node["openstack"]["block-storage"]["backup"]["driver"]
     when 'cinder.backup.drivers.swift' -%>
 backup_driver=<%= node["openstack"]["block-storage"]["backup"]["driver"] %>
