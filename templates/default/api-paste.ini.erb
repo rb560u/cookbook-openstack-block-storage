@@ -59,6 +59,7 @@ auth_protocol = <%= @identity_internal_endpoint.scheme %>
 <% if node['openstack']['block-storage']['api']['auth']['version'] != 'v2.0' %>
 auth_version = <%= node['openstack']['block-storage']['api']['auth']['version'] %>
 <% end %>
+auth_region = <%= node['openstack']['region'] %>
 admin_tenant_name = <%= node["openstack"]["block-storage"]["service_tenant_name"] %>
 admin_user = <%= node["openstack"]["block-storage"]["service_user"] %>
 admin_password = <%= @service_pass %>
