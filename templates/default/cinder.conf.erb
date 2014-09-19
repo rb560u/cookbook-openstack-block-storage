@@ -179,8 +179,8 @@ auth_strategy=keystone
     <% case node["openstack"]["block-storage"]["backup"]["driver"]
     when 'cinder.backup.drivers.swift' -%>
 backup_driver=<%= node["openstack"]["block-storage"]["backup"]["driver"] %>
+backup_swift_url = <%= node["openstack"]["block-storage"]["backup"]["swift_url"] %>
 backup_swift_auth = <%= node["openstack"]["block-storage"]["backup"]["auth"] %>
-#backup_swift_url = http://localhost:8080/v1/AUTH
 #backup_swift_container = volumebackups
 #backup_swift_object_size = 52428800
 #backup_swift_retry_attempts = 3
